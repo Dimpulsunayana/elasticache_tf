@@ -36,7 +36,6 @@ resource "aws_elasticache_subnet_group" "redis" {
 
 resource "aws_elasticache_cluster" "example" {
   cluster_id        = "${var.env}-redis"
-  description                 = "example description"
   node_type                   = var.node_type
   engine_version       = var.engine_version
   port                        = 6379
