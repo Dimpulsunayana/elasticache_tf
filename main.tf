@@ -20,7 +20,7 @@ resource "aws_elasticache_security_group" "redis" {
 
   tags       = merge(
     local.common_tags,
-    { Name = "${var.env}-redois_segrp" }
+    { Name = "${var.env}-redis_segrp" }
   )
 }
 
