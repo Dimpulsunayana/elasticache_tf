@@ -25,7 +25,7 @@ resource "aws_security_group" "redis" {
 }
 
 resource "aws_elasticache_subnet_group" "redis" {
-  name       = "${var.env}-redis_subnetgrp"
+  name       = "${var.env}-redis-subnetgrp"
   subnet_ids = var.subnet_ids
 
   tags       = merge(
