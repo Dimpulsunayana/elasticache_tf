@@ -40,8 +40,7 @@ resource "aws_elasticache_cluster" "example" {
   node_type                   = var.node_type
   engine_version       = var.engine_version
   port                        = 6379
-  num_node_groups         = 1
-  replicas_per_node_group = 1
+  num_cache_nodes         = 1
 
   subnet_group_name = aws_elasticache_subnet_group.redis.name
   security_group_ids = [aws_security_group.redis.id]
