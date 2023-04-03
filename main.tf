@@ -1,4 +1,4 @@
-resource "aws_elasticache_security_group" "redis" {
+resource "aws_security_group" "redis" {
   name        = "${var.env}-reds_segrp"
   description = "Allow TLS inbound traffic"
   vpc_id      = var.main_vpc
@@ -34,17 +34,17 @@ resource "aws_elasticache_subnet_group" "redis" {
   )
 }
 
-resource "aws_elasticache_replication_group" "example" {
-  automatic_failover_enabled  = true
-  replication_group_id        = "${var.env}-redis"
+resource "aws_elasticache_cluster" "example" {
+  cluster_id        = "${var.env}-redis"
   description                 = "example description"
   node_type                   = var.node_type
+  engine_version       = var.engine_version
   port                        = 6379
   num_node_groups         = 1
   replicas_per_node_group = 1
 
   subnet_group_name = aws_elasticache_subnet_group.redis.name
-  security_group_ids = [aws_elasticache_security_group.redis.id]
+  security_group_ids = [aws_security_group.redis.id]
 
   tags       = merge(
     local.common_tags,
